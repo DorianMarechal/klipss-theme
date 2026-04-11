@@ -1,0 +1,13 @@
+/*
+Theme Name: Klipss
+Theme URI: http://klipss.fr/
+Author: Klipss
+Author URI: https://d3c-agency.fr
+Description: Theme WordPress personnalisé pour Klipss
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: klipss
+*/
+
+/* Le CSS principal est charge via functions.php depuis assets/css/main.css */
