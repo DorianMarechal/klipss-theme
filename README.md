@@ -3,6 +3,8 @@
 Landing page e-commerce one-product pour Klipss, accroche-sac connecté 3-en-1.
 Site en production : https://klipss.fr
 
+![Klipss — Aperçu du site](screenshot.png)
+
 ## Stack technique
 - WordPress (sans WooCommerce)
 - Thème custom développé from scratch (PHP, CSS, JavaScript vanilla)
