@@ -12,6 +12,16 @@ Site en production : https://klipss.fr
 - Intégration Stripe directe (Stripe.js + webhooks PHP) sans plugin
 - Tunnel de pré-commande custom
 
+## Choix techniques
+
+### Pourquoi pas WooCommerce
+
+Le site vend un seul produit en pré-commande, pas un catalogue. WooCommerce aurait ajouté ~50 tables en base et des centaines de hooks pour des fonctionnalités inutiles ici (gestion de stock multi-produits, taxes complexes, variations, coupons). Pour un tunnel mono-produit avec paiement Stripe, ~300 lignes de PHP custom suffisent et restent entièrement sous mon contrôle. Pas de surcouche à débugger, pas de dépendance à un plugin qui peut casser à chaque mise à jour. Côté front, ça évite aussi le poids mort des scripts WooCommerce chargés par défaut. Le client garde un back-office WordPress familier pour ses pages éditoriales (mentions légales, CGV) sans complexité e-commerce inutile.
+
+### Pourquoi Stripe en intégration directe
+
+J'ai intégré Stripe.js et les webhooks en PHP pur (dans `inc/klipss-customer.php`) plutôt que de passer par un plugin. Ça me donne la maîtrise complète du tunnel : je définis les étapes, les validations et l'UX du paiement sans hériter du flow imposé par un intermédiaire. Pas de couche d'abstraction entre mon code et l'API Stripe, le debug est direct et la doc Stripe s'applique telle quelle. Chaque événement webhook (`payment_intent.succeeded`, etc.) est traité explicitement. C'était aussi un choix d'apprentissage : j'ai voulu comprendre comment Stripe fonctionne réellement, pas juste configurer un plugin.
+
 ## Structure du thème
 
 ```
@@ -73,3 +83,13 @@ klipss-theme/
    define('KLIPSS_STRIPE_SK', 'sk_live_...');
    define('KLIPSS_SHOP_EMAIL', 'contact@klipss.fr');
    ```
+
+## Limites connues et ce que je referais
+
+**Module cart.js en legacy.** J'avais initialement prévu un panier multi-articles persistant avant de pivoter vers un tunnel de pré-commande direct (un seul produit, paiement immédiat). Le fichier `assets/js/modules/cart.js` est conservé mais n'est plus appelé dans le flow actuel. Aujourd'hui je le supprimerais proprement, ou je le déplacerais dans un dossier `/archive` si je voulais garder une trace.
+
+**Aucun test automatisé.** Projet client livré sous contrainte de temps, les tests n'ont pas été priorisés. Je mettrais au minimum des tests unitaires PHPUnit sur la logique de calcul de commande, et un test d'intégration sur le webhook Stripe avec un mock de l'API.
+
+**Constantes Stripe en dur dans wp-config.php.** C'est la pratique courante WordPress, mais pas la meilleure. J'utiliserais `vlucas/phpdotenv` avec un fichier `.env` hors-repo, ce qui permettrait aussi de versionner un `.env.example` pour documenter les variables attendues.
+
+**Pas de système de build.** Le JS utilise des modules ES6 natifs, le CSS est écrit à la main avec une version minifiée générée manuellement. Ça fonctionne ici parce que le projet est petit (~12 modules JS, un seul fichier CSS). Sur un projet plus gros, j'utiliserais Vite pour bundler, tree-shaker et minifier automatiquement.
