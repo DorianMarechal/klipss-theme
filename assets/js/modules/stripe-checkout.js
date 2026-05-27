@@ -381,7 +381,8 @@ function showSuccessScreen() {
     text.append(strong, document.createTextNode('. Vous serez informé(e) dès que votre Klipss sera prêt à être expédié.'));
 
     // Lien vers le compte si créé ou déjà connecté
-    if (shippingData.createAccount || klipss_stripe.is_logged_in) {
+    const hasAccount = shippingData.createAccount || klipss_stripe.is_logged_in;
+    if (hasAccount) {
         const accountLink = document.createElement('a');
         accountLink.href      = klipss_stripe.account_url;
         accountLink.className = 'stripe-success__account-link';
@@ -392,6 +393,11 @@ function showSuccessScreen() {
     }
 
     stepCheckout.appendChild(wrap);
+
+    // Redirection automatique vers le compte après 2.5s (si compte)
+    if (hasAccount && klipss_stripe.account_url) {
+        setTimeout(() => { window.location.href = klipss_stripe.account_url; }, 2500);
+    }
 }
 
 /* ─── Pré-remplissage depuis le compte connecté ─────────────── */

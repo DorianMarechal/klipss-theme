@@ -22,7 +22,7 @@
                         )
                     ); ?>
                     <div class="header__menu-account">
-                        <a href="<?php echo wc_get_page_permalink('myaccount'); ?>" class="header__menu-account-link">
+                        <a href="<?php echo esc_url(home_url('/mon-compte/')); ?>" class="header__menu-account-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                             Mon compte
                         </a>
@@ -33,7 +33,7 @@
                 </div>
             </nav>
             <div class="header__cta">
-                <a href="<?php echo wc_get_page_permalink('myaccount'); ?>" class="header__account-btn" aria-label="Mon compte">
+                <a href="<?php echo esc_url(home_url('/mon-compte/')); ?>" class="header__account-btn" aria-label="Mon compte">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </a>
                 <a href="#configurator" class="header__cta-btn">Pré-commander</a>
