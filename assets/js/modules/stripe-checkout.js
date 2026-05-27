@@ -348,10 +348,10 @@ async function processOrder() {
 /* ─── Écran de succès ───────────────────────────────────────── */
 
 function showSuccessScreen() {
-    const step3 = document.querySelector('[data-step="3"]');
-    if (!step3) return;
+    const stepCheckout = document.querySelector('[data-step="2"]');
+    if (!stepCheckout) return;
 
-    step3.replaceChildren();
+    stepCheckout.replaceChildren();
     const wrap = document.createElement('div');
     wrap.className = 'stripe-success';
 
@@ -391,7 +391,7 @@ function showSuccessScreen() {
         wrap.append(iconWrap, title, text);
     }
 
-    step3.appendChild(wrap);
+    stepCheckout.appendChild(wrap);
 }
 
 /* ─── Pré-remplissage depuis le compte connecté ─────────────── */

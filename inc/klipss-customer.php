@@ -307,7 +307,11 @@ function klipss_ajax_process_order() {
     $order_ref   = 'KLP-' . date('Ymd') . '-' . strtoupper(wp_generate_password(5, false));
     $user_id     = get_current_user_id(); // déjà connecté si compte créé à l'étape 1
 
-    $ecosystem_labels = ['apple' => 'Apple Find My', 'android' => 'Google Find My Device'];
+    $ecosystem_labels = [
+        'apple'   => 'Apple Find My',
+        'android' => 'Google Find My Device',
+        'both'    => 'Apple Find My & Google Find My Device',
+    ];
     $ecosystem_label  = $ecosystem_labels[$ecosystem] ?? $ecosystem;
     $option_label     = 'Pack Complet 3-en-1' . ($ecosystem_label ? ' · ' . $ecosystem_label : '');
 

@@ -528,11 +528,11 @@ function klipss_settings_page() {
             <li><strong>Créez un produit WooCommerce</strong> de type "Variable"</li>
             <li><strong>Ajoutez les attributs</strong> :
                 <ul>
-                    <li>Style : rose-eclat, flocon-dor, essence-boisee, noir-elegance, marbre-celeste, bronze-antique</li>
-                    <li>Option : chargeur-induction, traceur-gps, pack-complet</li>
+                    <li>Style : cuir-marron, bois, rose, noir-mat</li>
+                    <li>Compatibilité : apple, android (informative, prix identique)</li>
                 </ul>
             </li>
-            <li><strong>Créez les variations</strong> avec les prix (45€ ou 60€)</li>
+            <li><strong>Créez les variations</strong> au prix unique de 45€</li>
             <li><strong>Entrez l'ID du produit</strong> ci-dessus</li>
             <li><strong>Configurez les paiements</strong> dans WooCommerce > Réglages > Paiements</li>
         </ol>

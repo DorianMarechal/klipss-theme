@@ -1,14 +1,9 @@
 /**
  * Configurator Module
- * Progressive disclosure: ① Couleur → ② Compatibilité → ③ Commander
+ * Progressive disclosure: ① Couleur → ② Commander
  */
 
 import { mountPaymentForm } from './stripe-checkout.js';
-
-const ecosystemNames = {
-    'apple':   'Apple Find My',
-    'android': 'Google Find My Device',
-};
 
 export function init() {
     const configuratorImage       = document.getElementById('configuratorImage');
@@ -20,13 +15,11 @@ export function init() {
     const steps = {
         1: document.querySelector('[data-step="1"]'),
         2: document.querySelector('[data-step="2"]'),
-        3: document.querySelector('[data-step="3"]'),
     };
 
-    const hasSteps = steps[1] && steps[2] && steps[3];
+    const hasSteps = steps[1] && steps[2];
 
-    initStyleSelection(configuratorImage, configuratorPlaceholder, hasSteps ? steps : null);
-    initEcosystemSelection(configuratorBuyBtn, hasSteps ? steps : null);
+    initStyleSelection(configuratorImage, configuratorPlaceholder, configuratorBuyBtn, hasSteps ? steps : null);
     initOverviewAccordion();
     initStripeButton();
 }
@@ -67,7 +60,7 @@ function unlockStep(stepEl, instant = false) {
 
 /* ─── Style/color selection ─────────────────────────────────── */
 
-function initStyleSelection(configuratorImage, placeholder, steps) {
+function initStyleSelection(configuratorImage, placeholder, configuratorBuyBtn, steps) {
     const styleButtons = document.querySelectorAll('.configurator__style-btn');
 
     styleButtons.forEach(btn => {
@@ -89,45 +82,17 @@ function initStyleSelection(configuratorImage, placeholder, steps) {
                 }, 200);
             }
 
+            configuratorBuyBtn.disabled = false;
+
             if (!steps) return;
 
             // Mark step 1 complete
             if (!steps[1].classList.contains('is-completed')) {
                 completeStep(steps[1]);
             }
-            // Unlock step 2 if still locked
+            // Unlock step 2 (commander) right away
             if (steps[2].classList.contains('is-locked')) {
                 unlockStep(steps[2]);
-            }
-        });
-    });
-}
-
-/* ─── Ecosystem selection (Apple Find My / Google Find My Device) */
-
-function initEcosystemSelection(configuratorBuyBtn, steps) {
-    const featureInputs          = document.querySelectorAll('.configurator__feature-input');
-    const configuratorEcosystem  = document.getElementById('configuratorEcosystemLabel');
-
-    featureInputs.forEach(input => {
-        input.addEventListener('change', () => {
-            const ecosystem = input.value;
-
-            if (configuratorEcosystem) {
-                configuratorEcosystem.textContent = ecosystemNames[ecosystem] || ecosystem;
-            }
-
-            configuratorBuyBtn.disabled = false;
-
-            if (!steps) return;
-
-            // Mark step 2 complete
-            if (!steps[2].classList.contains('is-completed')) {
-                completeStep(steps[2]);
-            }
-            // Unlock step 3 (commander)
-            if (steps[3].classList.contains('is-locked')) {
-                unlockStep(steps[3]);
             }
         });
     });
@@ -140,16 +105,12 @@ function initStripeButton() {
     if (!buyBtn) return;
 
     buyBtn.addEventListener('click', () => {
-        const checkedInput = document.querySelector('.configurator__feature-input:checked');
-        const activeStyle  = document.querySelector('.configurator__style-btn.is-active');
+        const activeStyle = document.querySelector('.configurator__style-btn.is-active');
+        const styleName   = activeStyle ? (activeStyle.querySelector('.configurator__style-name')?.textContent || '') : '';
 
-        const ecosystem     = checkedInput ? checkedInput.value : '';
-        const styleName     = activeStyle  ? (activeStyle.querySelector('.configurator__style-name')?.textContent || '') : '';
-        const ecosystemLabel = ecosystemNames[ecosystem] || ecosystem;
+        const summary = styleName + ' · Apple & Android · 45€';
 
-        const summary = styleName + ' · ' + ecosystemLabel + ' · 60€';
-
-        mountPaymentForm('pack', styleName, summary, ecosystem);
+        mountPaymentForm('pack', styleName, summary, 'both');
     });
 }
 

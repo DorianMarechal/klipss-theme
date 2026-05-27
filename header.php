@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Klipss | Accroche-sac connecté 3-en-1 — Batterie, Tracker, Qi | 60€</title>
-    <meta name="description" content="Klipss : l'accroche-sac connecté 3-en-1. Batterie 3000mAh, charge Qi 7.5W, tracker Bluetooth. Design joaillier, 6 coloris. 60€, livraison gratuite.">
+    <title>Klipss | Bijou de sac connecté 3-en-1 — Accroche, Batterie, Tracker | 45€</title>
+    <meta name="description" content="Klipss : le bijou de sac connecté 3-en-1. Batterie 3000mAh, charge Qi 7.5W, tracker Bluetooth. Design joaillier, 4 coloris. 45€, livraison gratuite.">
     <meta name="author" content="Klipss">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="<?php echo esc_url(home_url('/')); ?>">
@@ -19,21 +19,21 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="product">
     <meta property="og:url" content="<?php echo esc_url(home_url('/')); ?>">
-    <meta property="og:title" content="Klipss — L'accroche-sac connecté 3-en-1 qui libère votre quotidien">
-    <meta property="og:description" content="Batterie 3000mAh, charge sans fil Qi 7.5W, Tracker Bluetooth 5.0 et crochet antirayures. Design joaillier en 6 coloris exclusifs. Dès 60€.">
+    <meta property="og:title" content="Klipss — Le bijou de sac connecté 3-en-1 qui libère votre quotidien">
+    <meta property="og:description" content="Batterie 3000mAh, charge sans fil Qi 7.5W, Tracker Bluetooth 5.0 et crochet antirayures. Design joaillier en 4 coloris exclusifs. Dès 45€.">
     <meta property="og:image" content="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Klipss">
-    <meta property="product:price:amount" content="60.00">
+    <meta property="product:price:amount" content="45.00">
     <meta property="product:price:currency" content="EUR">
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="<?php echo esc_url(home_url('/')); ?>">
-    <meta name="twitter:title" content="Klipss — L'accroche-sac connecté 3-en-1">
-    <meta name="twitter:description" content="Batterie 3000mAh, charge sans fil Qi 7.5W, Tracker Bluetooth 5.0. Design joaillier, 6 coloris. Dès 60€.">
+    <meta name="twitter:title" content="Klipss — Le bijou de sac connecté 3-en-1">
+    <meta name="twitter:description" content="Batterie 3000mAh, charge sans fil Qi 7.5W, Tracker Bluetooth 5.0. Design joaillier, 4 coloris. Dès 45€.">
     <meta name="twitter:image" content="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/og-image.jpg">
 
     <!-- Structured Data - Product -->
@@ -44,7 +44,7 @@
         '@context'    => 'https://schema.org',
         '@type'       => 'Product',
         'name'        => 'Klipss',
-        'description' => "Klipss est l'accroche-sac connecté 3-en-1 : batterie 3000mAh, charge sans fil Qi 7.5W, Tracker Bluetooth 5.0 et crochet antirayures. Design joaillier en 6 coloris exclusifs, environ 150g, acier inoxydable recyclé.",
+        'description' => "Klipss est le bijou de sac connecté 3-en-1 : batterie 3000mAh, charge sans fil Qi 7.5W, Tracker Bluetooth 5.0 et crochet d'accroche antirayures. Design joaillier en 4 coloris exclusifs, environ 150g, acier inoxydable recyclé.",
         'image'       => array(
             $theme_uri . '/assets/images/klipss/1-desktop.webp',
             $theme_uri . '/assets/images/klipss/2-desktop.webp',
@@ -55,7 +55,7 @@
             '@type'            => 'Offer',
             'url'              => $home_url,
             'priceCurrency'    => 'EUR',
-            'price'            => '60.00',
+            'price'            => '45.00',
             'priceValidUntil'  => '2026-12-31',
             'availability'     => 'https://schema.org/InStock',
             'itemCondition'    => 'https://schema.org/NewCondition',

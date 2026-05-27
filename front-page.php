@@ -12,8 +12,8 @@
         <section class="hero" id="hero">
             <div class="container">
                 <div class="hero__header">
-                    <p class="hero__subtitle">L'accroche-sac connecté <span style="white-space:nowrap">3-en-1</span></p>
-                    <h1 class="hero__title">L'accroche-sac connecté
+                    <p class="hero__subtitle">Le bijou de sac connecté <span style="white-space:nowrap">3-en-1</span></p>
+                    <h1 class="hero__title">Le bijou de sac connecté
                         qui recharge votre quotidien.</h1>
                 </div>
             </div>
@@ -21,27 +21,19 @@
             <div class="hero__slider">
                 <ul class="hero__slider-track">
                     <li class="hero__slide">
-                        <img fetchpriority="high" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/1-desktop.webp" alt="Accroche-sac connecté Klipss coloris Rose Éclat"
+                        <img fetchpriority="high" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/1-desktop.webp" alt="Accroche-sac connecté Klipss coloris Rose"
                             class="hero__slide-img" width="600" height="600">
                     </li>
                     <li class="hero__slide">
-                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/2-desktop.webp" alt="Klipss Flocon d'Or — accroche-sac avec batterie intégrée"
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/2-desktop.webp" alt="Klipss Cuir Marron — accroche-sac avec batterie intégrée"
                             class="hero__slide-img" width="600" height="600">
                     </li>
                     <li class="hero__slide">
-                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/3-desktop.webp" alt="Klipss Essence Boisée — accroche-sac design joaillier"
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/3-desktop.webp" alt="Klipss Bois — accroche-sac design joaillier"
                             class="hero__slide-img" width="600" height="600">
                     </li>
                     <li class="hero__slide">
-                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/4-desktop.webp" alt="Klipss Noir Élégance — accroche-sac connecté premium"
-                            class="hero__slide-img" width="600" height="600">
-                    </li>
-                    <li class="hero__slide">
-                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/5-desktop.webp" alt="Klipss Marbre Céleste — accessoire sac à main connecté"
-                            class="hero__slide-img" width="600" height="600">
-                    </li>
-                    <li class="hero__slide">
-                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/6-desktop.webp" alt="Klipss Bronze Antique — accroche-sac avec tracker Bluetooth"
+                        <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/4-desktop.webp" alt="Klipss Noir Mat — accroche-sac connecté premium"
                             class="hero__slide-img" width="600" height="600">
                     </li>
                 </ul>
@@ -53,14 +45,14 @@
                 <div class="hero__cta-wrapper">
                     <div class="hero__cta-text">
                         <p class="hero__cta-label">Design Joaillier</p>
-                        <p class="hero__cta-description">6 coloris exclusifs.</p>
+                        <p class="hero__cta-description">4 coloris exclusifs.</p>
                     </div>
                     <a href="#configurator" class="cta__action">
-                        <p class="cta__price">60€</p>
+                        <p class="cta__price">45€</p>
                         <span class="cta__btn">Pré-commander</span>
                     </a>
                     <div class="hero__cta-text hero__cta-text--right">
-                        <p class="hero__cta-label">3-en-1 Connecté</p>
+                        <p class="hero__cta-label">Bijou Intelligent</p>
                         <p class="hero__cta-description">Charge · Tracker · Style</p>
                     </div>
                 </div>
@@ -224,11 +216,11 @@
                 </div>
 
                 <p class="ideas_quote">
-                    L'accroche-sac connecté 3-en-1 pensé pour elle. Batterie 3000mAh, charge sans fil Qi, Tracker Bluetooth, le tout suspendu à l'anse de votre sac comme un bijou. Disponible en 6 coloris exclusifs.
+                    Le bijou de sac connecté 3-en-1 pensé pour elle. Batterie 3000mAh, charge sans fil Qi, Tracker Bluetooth, le tout suspendu à l'anse de votre sac. Disponible en 4 coloris exclusifs.
                 </p>
 
                 <a href="#configurator" class="cta__action">
-                    <p class="cta__price">60€</p>
+                    <p class="cta__price">45€</p>
                     <span class="cta__btn">Pré-commander</span>
                 </a>
             </div>
@@ -250,7 +242,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" /></svg>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" /></svg>
                         </div>
-                        <span class="testimonials__aggregate-score">4,9 / 5</span>
+                        <span class="testimonials__aggregate-score">5 / 5</span>
                         <span class="testimonials__aggregate-label">— Avis clients vérifiés</span>
                     </div>
                 </div>
@@ -309,7 +301,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" /></svg>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" /></svg>
                             </div>
-                            <p class="testimonials__text">Le tracking GPS m'a sauvé plusieurs fois. J'ai tendance à
+                            <p class="testimonials__text">Le tracker Bluetooth m'a sauvé plusieurs fois. J'ai tendance à
                                 oublier mon sac partout, maintenant je suis alertée dès que je m'éloigne.</p>
                             <div class="testimonials__author">
                                 <img loading="lazy" src="<?php echo get_template_directory_uri(); ?>/assets/images/testimonials/2.jpg" alt="Marie Dubois"
@@ -403,7 +395,7 @@
         <section class="comparison" id="comparison">
             <div class="container">
                 <div class="comparison__header">
-                    <h2 class="comparison__title">60€ pour 3 innovations en 1</h2>
+                    <h2 class="comparison__title">45€ pour 3 innovations en 1</h2>
                     <p class="comparison__subtitle">Trois essentiels réunis en un seul objet. Klipss coûte moins que l'addition.</p>
                 </div>
                 <div class="comparison__table-wrap">
@@ -411,7 +403,7 @@
                         <thead>
                             <tr>
                                 <th class="comparison__th--feature"></th>
-                                <th class="comparison__th--klipss">Klipss<br><span>60€</span></th>
+                                <th class="comparison__th--klipss">Klipss<br><span>45€</span></th>
                                 <th class="comparison__th--separate">Achat séparé<br><span>~95€</span></th>
                             </tr>
                         </thead>
@@ -437,18 +429,18 @@
                                 <td class="comparison__price-cell">~35€</td>
                             </tr>
                             <tr>
-                                <td>Design joaillier · 6 coloris</td>
+                                <td>Design joaillier · 4 coloris</td>
                                 <td class="comparison__yes">✓</td>
                                 <td class="comparison__no">—</td>
                             </tr>
                             <tr>
-                                <td>Certifié CE · Acier inox recyclable</td>
+                                <td>Certifié CE · Acier inox recyclé</td>
                                 <td class="comparison__yes">✓</td>
                                 <td class="comparison__no">—</td>
                             </tr>
                             <tr class="comparison__total-row">
                                 <td><strong>Total</strong></td>
-                                <td class="comparison__total--klipss"><strong>60€</strong></td>
+                                <td class="comparison__total--klipss"><strong>45€</strong></td>
                                 <td class="comparison__total--separate"><strong>~95€</strong></td>
                             </tr>
                         </tbody>
@@ -597,7 +589,7 @@
                                 </svg>
                             </div>
 
-                            <p class="tech-spec__item__description">Acier inox recyclable, finition PVD joaillerie</p>
+                            <p class="tech-spec__item__description">Acier inox recyclé, finition PVD joaillerie</p>
 
                             <div class="tech-spec__open-modal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -678,7 +670,7 @@
                             </button>
                             <div class="configurator__overview-content">
                                 <p class="configurator__overview-desc">
-                                    L'accroche-sac connecté 3-en-1 : batterie 3000mAh, charge sans fil Qi 7.5W, Tracker Bluetooth 5.0, accroche-sac antirayures. Un bijou de sac qui se suspend en permanence à l'anse de votre sac, en environ 150g. Choisissez votre coloris et votre pack.
+                                    Le bijou de sac connecté 3-en-1 : batterie 3000mAh, charge sans fil Qi 7.5W, Tracker Bluetooth 5.0, crochet d'accroche antirayures. Suspendu en permanence à l'anse de votre sac, en environ 150g. Choisissez votre coloris.
                                 </p>
                             </div>
                         </div>
@@ -702,78 +694,31 @@
                                     <button class="configurator__style-btn" data-style="1"
                                         data-image="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/1-desktop.svg">
                                         <span class="configurator__style-color" style="background: linear-gradient(135deg, #FFB6C1 0%, #FF69B4 50%, #FFD700 100%);"></span>
-                                        <span class="configurator__style-name">Rose Éclat</span>
+                                        <span class="configurator__style-name">Rose</span>
                                     </button>
                                     <button class="configurator__style-btn" data-style="2"
                                         data-image="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/2-desktop.svg">
-                                        <span class="configurator__style-color" style="background: linear-gradient(135deg, #FFD700 0%, #FFF8DC 50%, #FFD700 100%);"></span>
-                                        <span class="configurator__style-name">Flocon d'Or</span>
+                                        <span class="configurator__style-color" style="background: linear-gradient(135deg, #5C3317 0%, #8B5A2B 50%, #A0522D 100%);"></span>
+                                        <span class="configurator__style-name">Cuir Marron</span>
                                     </button>
                                     <button class="configurator__style-btn" data-style="3"
                                         data-image="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/3-desktop.svg">
                                         <span class="configurator__style-color" style="background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #DEB887 100%);"></span>
-                                        <span class="configurator__style-name">Essence Boisée</span>
+                                        <span class="configurator__style-name">Bois</span>
                                     </button>
                                     <button class="configurator__style-btn" data-style="4"
                                         data-image="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/4-desktop.svg">
                                         <span class="configurator__style-color" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);"></span>
-                                        <span class="configurator__style-name">Noir Élégance</span>
-                                    </button>
-                                    <button class="configurator__style-btn" data-style="5"
-                                        data-image="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/5-desktop.svg">
-                                        <span class="configurator__style-color" style="background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 30%, #D3D3D3 70%, #F5F5F5 100%);"></span>
-                                        <span class="configurator__style-name">Marbre Céleste</span>
-                                    </button>
-                                    <button class="configurator__style-btn" data-style="6"
-                                        data-image="<?php echo get_template_directory_uri(); ?>/assets/images/klipss/6-desktop.svg">
-                                        <span class="configurator__style-color" style="background: linear-gradient(135deg, #CD7F32 0%, #B8860B 50%, #8B4513 100%);"></span>
-                                        <span class="configurator__style-name">Bronze Antique</span>
+                                        <span class="configurator__style-name">Noir Mat</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Step 2 – Compatibilité -->
+                        <!-- Step 2 – Pré-commander -->
                         <div class="configurator__step is-locked" data-step="2">
                             <div class="configurator__step-header">
                                 <span class="configurator__step-number">2</span>
-                                <span class="configurator__step-title">Choisissez votre compatibilité</span>
-                                <span class="configurator__step-check">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                </span>
-                            </div>
-                            <div class="configurator__step-body">
-                                <div class="configurator__features">
-                                    <label class="configurator__feature-card">
-                                        <input type="radio" name="ecosystem" value="apple"
-                                            class="configurator__feature-input">
-                                        <span class="configurator__feature-content">
-                                            <span class="configurator__feature-radio"></span>
-                                            <span class="configurator__feature-info">
-                                                <span class="configurator__feature-name">Apple Find My</span>
-                                                <span class="configurator__feature-desc">Compatible iPhone (iOS 14.5+)</span>
-                                            </span>
-                                        </span>
-                                    </label>
-                                    <label class="configurator__feature-card">
-                                        <input type="radio" name="ecosystem" value="android"
-                                            class="configurator__feature-input">
-                                        <span class="configurator__feature-content">
-                                            <span class="configurator__feature-radio"></span>
-                                            <span class="configurator__feature-info">
-                                                <span class="configurator__feature-name">Google Find My Device</span>
-                                                <span class="configurator__feature-desc">Compatible smartphones Android</span>
-                                            </span>
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 – Pré-commander -->
-                        <div class="configurator__step is-locked" data-step="3">
-                            <div class="configurator__step-header">
-                                <span class="configurator__step-number">3</span>
                                 <span class="configurator__step-title">Pré-commander</span>
                                 <span class="configurator__step-check">
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8l4 4 6-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -784,11 +729,7 @@
                                     <div class="configurator__price-details">
                                         <div class="configurator__price-row">
                                             <span class="configurator__price-label">Klipss 3-en-1</span>
-                                            <span class="configurator__price-item">60€</span>
-                                        </div>
-                                        <div class="configurator__price-row">
-                                            <span class="configurator__price-label">Compatibilité</span>
-                                            <span class="configurator__price-item" id="configuratorEcosystemLabel">—</span>
+                                            <span class="configurator__price-item">45€</span>
                                         </div>
                                         <div class="configurator__price-row">
                                             <span class="configurator__price-label">Livraison</span>
@@ -797,7 +738,7 @@
                                     </div>
                                     <div class="configurator__price-total">
                                         <span class="configurator__price-total-label">Total</span>
-                                        <span class="configurator__price-total-value" id="configuratorTotal">60€</span>
+                                        <span class="configurator__price-total-value" id="configuratorTotal">45€</span>
                                     </div>
                                     <button class="configurator__buy-btn" id="configuratorBuyBtn" disabled>
                                         Pré-commander
@@ -879,7 +820,7 @@
         <section class="details__section" id="details">
             <div class="container">
                 <div class="details__header">
-                    <h2 class="details__title">Commandez en toute confiance</h2>
+                    <h2 class="details__title">Commandez en toute sérénité</h2>
                     <p class="details__subtitle">
                         Livraison gratuite, retours sans frais, garantie 2 ans. L'exigence Klipss ne s'arrête pas au produit.
                     </p>
@@ -1136,7 +1077,7 @@
             </button>
             <h3 class="tech-modal__title">Tracker Bluetooth 5.0, votre sac toujours localisé</h3>
             <p class="tech-modal__description">
-                Ne perdez plus jamais votre sac à main. Le tracker Bluetooth 5.0 de Klipss localise votre accessoire en temps réel via Apple Find My (iOS) ou Google Find My Device (Android). Recevez une alerte instantanée dès que vous vous éloignez au-delà d'une distance que vous paramétrez vous-même. Portée Bluetooth jusqu'à 50 mètres en espace ouvert, consommation énergétique optimisée. Consultez l'historique complet des déplacements directement depuis votre smartphone.
+                Ne perdez plus jamais votre sac à main. Le tracker Bluetooth 5.0 de Klipss localise votre accessoire en temps réel via Apple Find My (iOS) et Google Find My Device (Android). Recevez une alerte instantanée dès que vous vous éloignez au-delà d'une distance que vous paramétrez vous-même. Portée Bluetooth de 10 à 30 mètres en direct, étendue par les réseaux maillés Apple Find My et Google Find My Device pour une couverture mondiale. Consultez l'historique complet des déplacements directement depuis votre smartphone.
             </p>
         </div>
     </div>
@@ -1154,7 +1095,7 @@
             </button>
             <h3 class="tech-modal__title">Accroche-sac antirayures, votre sac suspendu en un geste</h3>
             <p class="tech-modal__description">
-                Le système d'accroche de Klipss se fixe en quelques secondes sur le rebord d'une table, d'un bar ou d'un bureau. Le revêtement antirayures protège toutes les surfaces, même les plus délicates. Testé pour supporter plus de 10 kg, il maintient votre sac stable et à portée de main sans jamais le poser au sol. Compact et léger, il s'oublie dans votre sac et se sort quand vous en avez besoin.
+                Le système d'accroche de Klipss se fixe en quelques secondes sur le rebord d'une table, d'un bar ou d'un bureau. Le revêtement antirayures protège toutes les surfaces, même les plus délicates. Testé pour supporter plus de 20 kg, il maintient votre sac stable et à portée de main sans jamais le poser au sol. Compact et léger, il s'oublie dans votre sac et se sort quand vous en avez besoin.
             </p>
         </div>
     </div>
@@ -1170,9 +1111,9 @@
                     <path d="M6 6l12 12" />
                 </svg>
             </button>
-            <h3 class="tech-modal__title">Acier inoxydable recyclable, conçu pour durer</h3>
+            <h3 class="tech-modal__title">Acier inoxydable recyclé et finitions nobles</h3>
             <p class="tech-modal__description">
-                Le boîtier de Klipss est fabriqué en acier inoxydable recyclable, traité en surface par procédé PVD (Physical Vapour Deposition), le même utilisé en joaillerie pour une finition durable, résistante aux rayures et sans oxydation. L'emballage est 100% recyclable, composé de carton FSC sans plastique superflu. Choisir Klipss, c'est choisir un accessoire responsable, sans compromis sur la qualité ni sur l'impact.
+                Le boîtier de Klipss est fabriqué en acier inoxydable recyclé, traité en surface par procédé PVD (Physical Vapour Deposition), le même utilisé en joaillerie pour une finition durable, résistante aux rayures et sans oxydation. Selon le coloris, l'acier brossé s'associe à un gainage cuir véritable (Cuir Marron), à un placage bois (Bois) ou à un revêtement laqué mat (Noir Mat). Le coloris Rose joue la carte de l'acier brossé pur. L'emballage est 100% recyclable, composé de carton FSC sans plastique superflu. Choisir Klipss, c'est choisir un accessoire responsable, sans compromis sur la qualité ni sur l'impact.
             </p>
         </div>
     </div>
@@ -1194,7 +1135,7 @@
                 Localisez votre sac en temps réel, configurez les alertes de distance et recevez des notifications instantanées.
                 Aucune application supplémentaire à télécharger, aucun abonnement requis.
                 Le tracker Bluetooth 5.0 s'appuie sur les réseaux maillés Find My et Google Find My Device pour une couverture étendue.
-                Portée directe jusqu'à 50 mètres en espace ouvert, consommation énergétique optimisée.
+                Portée directe de 10 à 30 mètres en espace ouvert, étendue par les réseaux maillés Apple Find My et Google Find My Device pour une couverture mondiale.
             </p>
         </div>
     </div>
@@ -1510,7 +1451,7 @@
             <div class="sticky-bar__content">
                 <div class="sticky-bar__info">
                     <span class="sticky-bar__name">Klipss</span>
-                    <span class="sticky-bar__tagline">L'accroche-sac connecté 3-en-1</span>
+                    <span class="sticky-bar__tagline">Le bijou de sac connecté 3-en-1</span>
                 </div>
                 <div class="sticky-bar__right">
                     <span class="sticky-bar__price">À partir de 45€</span>
