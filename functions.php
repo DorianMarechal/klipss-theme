@@ -355,9 +355,7 @@ function klipss_create_payment_intent() {
 
     // Tarifs officiels en centimes — seule source de vérité
     $tarifs = [
-        'induction' => ['amount' => 4500, 'label' => 'Klipss + Chargeur à induction', 'shipping' => 490],
-        'gps'       => ['amount' => 4500, 'label' => 'Klipss + Traceur GPS',           'shipping' => 490],
-        'pack'      => ['amount' => 6000, 'label' => 'Klipss Pack Complet',             'shipping' => 0],
+        'pack' => ['amount' => 4500, 'label' => 'Klipss — Bijou de sac connecté 3-en-1', 'shipping' => 0],
     ];
 
     if (!isset($tarifs[$option])) {
