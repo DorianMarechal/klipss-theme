@@ -3117,7 +3117,7 @@ section {
 
 .account-auth__title {
     font-size: 26px;
-    font-weight: 800;
+    font-weight: 400;
     color: #1a1a1a;
     margin: 0;
     letter-spacing: -.5px;
@@ -3221,6 +3221,7 @@ section {
     .account-dashboard > *:first-child { position: static; }
     .account-quick-actions { display: flex; flex-direction: column; }
     .account-quick-action { width: 100%; }
+    .account-auth__title { font-size: 21px; }
 }
 
 /* ═══════════════════════════════════════
@@ -3236,41 +3237,30 @@ section {
     border: 1px solid #ede9e6;
 }
 
-.account-nav__user {
-    background: linear-gradient(135deg, #810D22 0%, #b01830 100%);
-    padding: 28px 24px;
-    display: flex;
+/* Bouton de repli — visible uniquement sur mobile */
+.account-nav__toggle {
+    display: none;
     align-items: center;
-    gap: 14px;
-}
-
-.account-nav__avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.2);
-    border: 2px solid rgba(255,255,255,.4);
-    color: #fff;
-    font-weight: 800;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    letter-spacing: 0;
-}
-
-.account-nav__name {
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 22px;
+    background: none;
+    border: none;
+    font-family: var(--typography-font-family-global);
     font-size: 15px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.3;
+    font-weight: 600;
+    color: #1a1a1a;
+    cursor: pointer;
 }
 
-.account-nav__email {
-    font-size: 11px;
-    color: rgba(255,255,255,.6);
-    margin-top: 2px;
+.account-nav__toggle-chevron {
+    flex-shrink: 0;
+    color: #810D22;
+    transition: transform .2s;
+}
+
+.account-nav.is-open .account-nav__toggle-chevron {
+    transform: rotate(180deg);
 }
 
 .account-nav__list {
@@ -3343,7 +3333,7 @@ section {
 
 .account-panel__title {
     font-size: 22px;
-    font-weight: 800;
+    font-weight: 400;
     color: #1a1a1a;
     margin: 0 0 4px;
     letter-spacing: -.4px;
@@ -3388,7 +3378,7 @@ section {
 
 .account-welcome__greeting {
     font-size: 28px;
-    font-weight: 900;
+    font-weight: 400;
     color: #fff;
     line-height: 1.15;
     letter-spacing: -.5px;
@@ -3398,6 +3388,20 @@ section {
     font-size: 14px;
     color: rgba(255,255,255,.6);
     margin-top: 6px;
+}
+
+/* Réductions mobile — placées après les règles de base pour les surcharger */
+@media (max-width: 768px) {
+    .account-panel__title { font-size: 17px; }
+    .account-welcome__greeting { font-size: 20px; }
+    .account-welcome__avatar { display: none; }
+
+    .account-nav__toggle { display: flex; }
+    .account-nav__list {
+        display: none;
+        border-top: 1px solid #ede9e6;
+    }
+    .account-nav.is-open .account-nav__list { display: block; }
 }
 
 .account-quick-actions {

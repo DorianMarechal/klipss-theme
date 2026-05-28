@@ -22,7 +22,7 @@ include get_template_directory() . '/inc/nav.php';
 
             <!-- Connexion -->
             <div class="account-auth__panel is-active" id="tabLogin">
-                <h1 class="account-auth__title">Bon retour !</h1>
+                <h1 class="account-auth__title">Heureux de vous revoir</h1>
                 <p class="account-auth__subtitle">Connectez-vous pour suivre vos commandes.</p>
 
                 <div class="account-auth__field">
@@ -78,14 +78,11 @@ include get_template_directory() . '/inc/nav.php';
 
             <!-- Sidebar navigation -->
             <nav class="account-nav">
-                <div class="account-nav__user">
-                    <div class="account-nav__avatar"><?php echo esc_html(strtoupper(substr($customer['first_name'] ?? 'K', 0, 1))); ?></div>
-                    <div>
-                        <div class="account-nav__name"><?php echo esc_html(($customer['first_name'] ?? '') . ' ' . ($customer['last_name'] ?? '')); ?></div>
-                        <div class="account-nav__email"><?php echo esc_html($customer['email'] ?? ''); ?></div>
-                    </div>
-                </div>
-                <ul class="account-nav__list">
+                <button type="button" class="account-nav__toggle" id="accountNavToggle" aria-expanded="false" aria-controls="accountNavList">
+                    <span class="account-nav__toggle-label">Tableau de bord</span>
+                    <svg class="account-nav__toggle-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <ul class="account-nav__list" id="accountNavList">
                     <li><button class="account-nav__item is-active" data-panel="dashboard">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                         Tableau de bord
@@ -117,7 +114,7 @@ include get_template_directory() . '/inc/nav.php';
                     <div class="account-welcome">
                         <div class="account-welcome__avatar"><?php echo esc_html(strtoupper(substr($customer['first_name'] ?? 'K', 0, 1))); ?></div>
                         <div>
-                            <div class="account-welcome__greeting">Bon retour, <?php echo esc_html($customer['first_name'] ?? 'vous'); ?>&nbsp;!</div>
+                            <div class="account-welcome__greeting">Heureux de vous revoir, <?php echo esc_html($customer['first_name'] ?? 'vous'); ?></div>
                             <div class="account-welcome__sub">Bienvenue dans votre espace Klipss</div>
                         </div>
                     </div>

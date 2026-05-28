@@ -36,6 +36,7 @@ export function init() {
     initLogin();
     initRegister();
     initNavPanels();
+    initNavToggle();
     initLogout();
     initDashboard();
     initOrders();
@@ -126,12 +127,40 @@ function navigateToPanel(panelKey) {
     document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('is-active'));
     const panelId = 'panel' + capitalize(panelKey);
     document.getElementById(panelId)?.classList.add('is-active');
+    syncNavToggleLabel();
+    closeNavMobile();
 }
 
 function initNavPanels() {
     const navItems = document.querySelectorAll('.account-nav__item[data-panel]');
     navItems.forEach(item => {
         item.addEventListener('click', () => navigateToPanel(item.dataset.panel));
+    });
+}
+
+/* ─── Sidebar repliable (mobile) ────────────────────────────── */
+
+function syncNavToggleLabel() {
+    const label  = document.querySelector('.account-nav__toggle-label');
+    const active = document.querySelector('.account-nav__item.is-active');
+    if (label && active) label.textContent = active.textContent.trim();
+}
+
+function closeNavMobile() {
+    const nav    = document.querySelector('.account-nav');
+    const toggle = document.getElementById('accountNavToggle');
+    nav?.classList.remove('is-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+}
+
+function initNavToggle() {
+    const nav    = document.querySelector('.account-nav');
+    const toggle = document.getElementById('accountNavToggle');
+    if (!nav || !toggle) return;
+    syncNavToggleLabel();
+    toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
 }
 
@@ -214,7 +243,7 @@ function initDashboard() {
 
         const product = document.createElement('div');
         product.className = 'account-dashboard-order__product';
-        product.textContent = [order.style, order.option_name].filter(Boolean).join(' — ');
+        product.textContent = [order.style, cleanOption(order.option_name)].filter(Boolean).join(' — ');
 
         const dateEl = document.createElement('div');
         dateEl.className = 'account-dashboard-order__date';
@@ -228,6 +257,12 @@ function initDashboard() {
         card.append(label, row);
         container.appendChild(card);
     });
+}
+
+// option_name est stocké sous la forme "Pack Complet 3-en-1 · <écosystème>".
+// Côté espace client on n'affiche que l'écosystème.
+function cleanOption(optionName) {
+    return (optionName || '').replace(/^Pack Complet 3-en-1\s*·?\s*/, '').trim();
 }
 
 /* ─── Déconnexion ───────────────────────────────────────────── */
@@ -287,7 +322,7 @@ function buildOrderCard(order) {
 
     const product = document.createElement('div');
     product.className = 'account-order-card__product';
-    product.textContent = [order.style, order.option_name].filter(Boolean).join(' — ');
+    product.textContent = [order.style, cleanOption(order.option_name)].filter(Boolean).join(' — ');
 
     const amount = document.createElement('div');
     amount.className = 'account-order-card__amount';
