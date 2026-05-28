@@ -506,6 +506,14 @@ section {
     overflow: hidden;
     position: relative;
     z-index: var(--z-banner);
+    transition: height .3s ease, padding .3s ease;
+}
+
+/* Au scroll : la bannière se replie vers le haut, la nav se colle en haut */
+.header.is-scrolled .header__banner {
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .header__banner-text {

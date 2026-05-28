@@ -45,6 +45,7 @@ function initMobileMenu() {
  * Header scroll effect — RAF-throttled to max 1 update per frame
  */
 function initHeaderScroll() {
+    const header     = document.querySelector('.header');
     const navPrimary = document.querySelector('.header__nav');
     if (!navPrimary) return;
 
@@ -58,6 +59,7 @@ function initHeaderScroll() {
         requestAnimationFrame(() => {
             if (window.scrollY > 0) {
                 navPrimary.classList.add('is-scrolled', 'is-scrolling');
+                header?.classList.add('is-scrolled');
 
                 clearTimeout(scrollingTimer);
                 scrollingTimer = setTimeout(() => {
@@ -65,6 +67,7 @@ function initHeaderScroll() {
                 }, 150);
             } else {
                 navPrimary.classList.remove('is-scrolled', 'is-scrolling');
+                header?.classList.remove('is-scrolled');
                 clearTimeout(scrollingTimer);
             }
 
