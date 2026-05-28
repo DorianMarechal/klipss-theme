@@ -7,6 +7,28 @@ const AJAX = () => (typeof klipss_stripe !== 'undefined' ? klipss_stripe.ajax_ur
 const NONCE_AUTH = () => (typeof klipss_stripe !== 'undefined' ? klipss_stripe.nonce_auth : '');
 const NONCE_ACCOUNT = () => (typeof klipss_stripe !== 'undefined' ? klipss_stripe.nonce_account : '');
 
+// Les nonces localisés sont figés par le cache full-page (LiteSpeed) et finissent
+// par expirer → 400/"Erreur de sécurité". On récupère des nonces frais via AJAX
+// (jamais mis en cache) une seule fois, avant le premier appel.
+let noncesReady = null;
+function ensureFreshNonces() {
+    if (noncesReady) return noncesReady;
+    noncesReady = (async () => {
+        try {
+            const res = await fetch(AJAX(), {
+                method:  'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body:    new URLSearchParams({ action: 'klipss_refresh_nonce' }),
+            });
+            const data = await res.json();
+            if (data.success && typeof klipss_stripe !== 'undefined') {
+                Object.assign(klipss_stripe, data.data);
+            }
+        } catch {}
+    })();
+    return noncesReady;
+}
+
 export function init() {
     if (!document.querySelector('.account-page')) return;
 
@@ -466,6 +488,7 @@ function initDeleteAccount() {
 /* ─── Utilitaires ───────────────────────────────────────────── */
 
 async function post(params) {
+    await ensureFreshNonces();
     const authActions = ['klipss_login', 'klipss_register', 'klipss_logout'];
     params.nonce = authActions.includes(params.action) ? NONCE_AUTH() : NONCE_ACCOUNT();
     try {

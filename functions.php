@@ -409,8 +409,10 @@ add_action('wp_ajax_nopriv_klipss_create_payment_intent', 'klipss_create_payment
  */
 function klipss_refresh_nonce() {
     wp_send_json_success([
-        'nonce_payment' => wp_create_nonce('klipss_nonce_payment'),
-        'nonce_auth'    => wp_create_nonce('klipss_nonce_auth'),
+        'nonce_payment'    => wp_create_nonce('klipss_nonce_payment'),
+        'nonce_auth'       => wp_create_nonce('klipss_nonce_auth'),
+        'nonce_account'    => wp_create_nonce('klipss_nonce_account'),
+        'nonce_newsletter' => wp_create_nonce('klipss_nonce_newsletter'),
     ]);
 }
 add_action('wp_ajax_klipss_refresh_nonce',        'klipss_refresh_nonce');
