@@ -402,6 +402,20 @@ function klipss_create_payment_intent() {
 add_action('wp_ajax_klipss_create_payment_intent',        'klipss_create_payment_intent');
 add_action('wp_ajax_nopriv_klipss_create_payment_intent', 'klipss_create_payment_intent');
 
+/**
+ * Renvoie un nonce frais via admin-ajax (jamais mis en cache).
+ * Contourne le full-page cache (LiteSpeed) qui fige le nonce inline et
+ * provoque une "Erreur de sécurité" quand le nonce caché a expiré.
+ */
+function klipss_refresh_nonce() {
+    wp_send_json_success([
+        'nonce_payment' => wp_create_nonce('klipss_nonce_payment'),
+        'nonce_auth'    => wp_create_nonce('klipss_nonce_auth'),
+    ]);
+}
+add_action('wp_ajax_klipss_refresh_nonce',        'klipss_refresh_nonce');
+add_action('wp_ajax_nopriv_klipss_refresh_nonce', 'klipss_refresh_nonce');
+
 // [H-3] klipss_send_order_confirmation supprimé — doublon de klipss_process_order, exposé publiquement
 
 /**
