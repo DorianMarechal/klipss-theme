@@ -50,9 +50,32 @@ export function init() {
     }
 }
 
+/* ─── Nonce frais ───────────────────────────────────────────── */
+
+// Le nonce localisé est figé par le cache full-page (LiteSpeed) et finit par
+// expirer → "Erreur de sécurité". On récupère des nonces frais via AJAX
+// (jamais mis en cache) juste avant d'ouvrir la modale.
+async function refreshNonces() {
+    try {
+        const res = await fetch(klipss_stripe.ajax_url, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body:    new URLSearchParams({ action: 'klipss_refresh_nonce' }),
+        });
+        const data = await res.json();
+        if (data.success) {
+            if (data.data.nonce_payment) klipss_stripe.nonce_payment = data.data.nonce_payment;
+            if (data.data.nonce_auth)    klipss_stripe.nonce_auth    = data.data.nonce_auth;
+        }
+    } catch {}
+}
+
 /* ─── Ouvrir la modale ──────────────────────────────────────── */
 
 export async function mountPaymentForm(option, style, summaryText, ecosystem = '') {
+    // Rafraîchir les nonces avant tout appel AJAX (register, payment intent, commande)
+    await refreshNonces();
+
     // Charger Stripe.js à la demande si pas encore initialisé
     if (!stripeInstance) {
         await loadScript(STRIPE_JS_URL);
