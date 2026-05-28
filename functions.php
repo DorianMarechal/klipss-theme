@@ -293,9 +293,9 @@ function klipss_critical_css() {
     .container{max-width:1440px;width:100%;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}
     .header{background-color:transparent;color:#1a0509;display:flex;flex-direction:column;position:fixed;top:0;width:100%;z-index:1000}
     .header__banner{display:flex;justify-content:center;align-items:center;padding:4px 12px;background-color:#CA4D26;color:#fffbf7;height:40px;overflow:hidden;position:relative;z-index:999}
-    .header__banner-text{margin:0;font-size:14px;text-align:center;position:absolute;width:100%;opacity:0;animation:slideText 9s infinite}
-    .header__banner-text:nth-child(1){animation-delay:0s}.header__banner-text:nth-child(2){animation-delay:3s}.header__banner-text:nth-child(3){animation-delay:6s}
-    @keyframes slideText{0%{opacity:0;transform:translateY(100%)}10%{opacity:1;transform:translateY(0)}33%{opacity:1;transform:translateY(0)}43%{opacity:0;transform:translateY(-100%)}100%{opacity:0;transform:translateY(-100%)}}
+    .header__banner-text{margin:0;font-size:14px;text-align:center;position:absolute;width:100%;opacity:0;animation:slideText 6s infinite}
+    .header__banner-text:nth-child(1){animation-delay:0s}.header__banner-text:nth-child(2){animation-delay:3s}
+    @keyframes slideText{0%{opacity:0;transform:translateY(100%)}8%{opacity:1;transform:translateY(0)}42%{opacity:1;transform:translateY(0)}50%{opacity:0;transform:translateY(-100%)}100%{opacity:0;transform:translateY(-100%)}}
     .header__nav{width:100%;padding:12px 0;position:relative;z-index:100;background-color:transparent}
     .header__nav .container{display:flex;justify-content:space-between;align-items:center}
     .header__logo{display:flex;width:130px;height:50px}.header__logo img{display:block}.header__logo-img{width:130px;height:auto}

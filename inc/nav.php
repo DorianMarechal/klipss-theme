@@ -3,7 +3,6 @@
 ======================================== -->
 <header class="header">
     <div class="header__banner">
-        <p class="header__banner-text">Livraison gratuite dès le Pack Complet — Expédié sous 24h</p>
         <p class="header__banner-text">Satisfaite ou remboursée — 30 jours pour changer d'avis</p>
         <p class="header__banner-text">3-en-1 : Batterie 3000mAh · Charge sans fil Qi · Tracker Bluetooth · Accroche-sac</p>
     </div>
