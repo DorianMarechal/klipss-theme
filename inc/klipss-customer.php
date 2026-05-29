@@ -299,7 +299,6 @@ function klipss_ajax_process_order() {
     $postal      = sanitize_text_field($_POST['zip']          ?? '');
     $country     = sanitize_text_field($_POST['country']      ?? 'France');
     $style       = sanitize_text_field($_POST['style']        ?? '');
-    $option      = sanitize_text_field($_POST['option']       ?? '');
     $ecosystem   = sanitize_text_field($_POST['ecosystem']    ?? '');
     $amount      = intval($_POST['amount']                    ?? 0);
 
@@ -313,7 +312,7 @@ function klipss_ajax_process_order() {
         'both'    => 'Apple Find My & Google Find My Device',
     ];
     $ecosystem_label  = $ecosystem_labels[$ecosystem] ?? $ecosystem;
-    $option_label     = 'Pack Complet 3-en-1' . ($ecosystem_label ? ' · ' . $ecosystem_label : '');
+    $option_label     = $ecosystem_label;
 
     // Sauvegarder adresse sur le compte
     if ($user_id) {
