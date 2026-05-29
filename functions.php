@@ -283,6 +283,16 @@ function klipss_security_headers() {
 add_action('send_headers', 'klipss_security_headers');
 
 /**
+ * Expéditeur des emails : « Klipss » au lieu du défaut « WordPress »
+ */
+add_filter('wp_mail_from_name', function () {
+    return 'Klipss';
+});
+add_filter('wp_mail_from', function () {
+    return (defined('KLIPSS_SHOP_EMAIL') && KLIPSS_SHOP_EMAIL) ? KLIPSS_SHOP_EMAIL : 'contact@klipss.fr';
+});
+
+/**
  * Critical CSS inline — above-the-fold (header + hero) pour un premier rendu rapide
  */
 function klipss_critical_css() {
