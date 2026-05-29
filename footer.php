@@ -50,11 +50,6 @@
                         'fallback_cb'    => false,
                     ) ); ?>
                     <ul class="footer__links">
-                        <li><a href="<?php echo esc_url( home_url('/mentions-legales/') ); ?>">Mentions légales</a></li>
-                        <li><a href="<?php echo esc_url( home_url('/conditions-generales-de-vente/') ); ?>">CGV</a></li>
-                        <li><a href="<?php echo esc_url( home_url('/conditions-generales-utilisation/') ); ?>">CGU</a></li>
-                        <li><a href="<?php echo esc_url( home_url('/politique-de-confidentialite/') ); ?>">Politique de confidentialité</a></li>
-                        <li><a href="<?php echo esc_url( home_url('/politique-cookies/') ); ?>">Politique de cookies</a></li>
                         <li><button type="button" class="footer__cookie-btn js-cookie-settings">Gérer mes cookies</button></li>
                     </ul>
                 </div>
