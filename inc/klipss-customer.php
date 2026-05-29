@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) exit;
 /* ─── Setup : rôle + table + page ──────────────────────────── */
 
 function klipss_setup() {
-    if (get_option('klipss_db_version') === '1.3') return;
+    if (get_option('klipss_db_version') === '1.4') return;
 
     // Rôle client (sans accès wp-admin)
     if (!get_role('klipss_customer')) {
@@ -67,9 +67,12 @@ function klipss_setup() {
 
     // Auto-créer les pages du thème
     $pages = [
-        'mon-compte'                  => ['Mon Compte',                 'page-mon-compte.php'],
-        'politique-de-confidentialite'=> ['Politique de confidentialité','page-politique-confidentialite.php'],
-        'politique-cookies'           => ['Politique de cookies',        'page-politique-cookies.php'],
+        'mon-compte'                       => ['Mon Compte',                          'page-mon-compte.php'],
+        'politique-de-confidentialite'     => ['Politique de confidentialité',        'page-politique-confidentialite.php'],
+        'politique-cookies'                => ['Politique de cookies',                'page-politique-cookies.php'],
+        'mentions-legales'                 => ['Mentions légales',                    'page-mentions-legales.php'],
+        'conditions-generales-de-vente'    => ['Conditions générales de vente',       'page-conditions-generales-de-vente.php'],
+        'conditions-generales-utilisation' => ['Conditions générales d\'utilisation', 'page-conditions-generales-utilisation.php'],
     ];
     foreach ($pages as $slug => $info) {
         if (!get_page_by_path($slug)) {
@@ -87,7 +90,7 @@ function klipss_setup() {
     // Migrer la colonne shipping_country si trop courte (VARCHAR 5 → 100)
     $wpdb->query("ALTER TABLE {$wpdb->prefix}klipss_orders MODIFY COLUMN shipping_country VARCHAR(100) NOT NULL DEFAULT ''");
 
-    update_option('klipss_db_version', '1.3');
+    update_option('klipss_db_version', '1.4');
 }
 add_action('after_switch_theme', 'klipss_setup');
 add_action('admin_init', 'klipss_setup');

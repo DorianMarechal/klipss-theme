@@ -45,12 +45,12 @@ $privacy_schema = array(
                     <h2 class="cgv__article-title">2. Identité du responsable de traitement</h2>
                     <div class="cgv__contact">
                         <p class="cgv__contact-item"><strong>KLIPSS SAS</strong></p>
-                        <p class="cgv__contact-item">Société par Actions Simplifiée au capital social de 10 000 €</p>
+                        <p class="cgv__contact-item">Société par Actions Simplifiée au capital social de 1 000 €</p>
                         <p class="cgv__contact-item"><strong>Siège social :</strong> 12 Rue des Cordonniers, 66000 Perpignan, France</p>
                         <p class="cgv__contact-item"><strong>RCS Perpignan :</strong> En cours d'immatriculation</p>
                         <p class="cgv__contact-item"><strong>Email :</strong> <a href="mailto:contact@klipss.fr" class="cgv__link">contact@klipss.fr</a></p>
                         <p class="cgv__contact-item"><strong>Téléphone :</strong> 04 68 12 34 56</p>
-                        <p class="cgv__contact-item">Le responsable de traitement est KLIPSS SAS, représentée par Madame Macha [NOM DE FAMILLE], en sa qualité de Présidente.</p>
+                        <p class="cgv__contact-item">Le responsable de traitement est KLIPSS SAS, représentée par Madame Macha Daubord, en sa qualité de Présidente.</p>
                     </div>
                 </article>
 

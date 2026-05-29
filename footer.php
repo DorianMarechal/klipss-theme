@@ -43,13 +43,12 @@
                 <!-- Colonne légal -->
                 <div class="footer__col">
                     <h4 class="footer__col-title">Légal</h4>
-                    <?php wp_nav_menu( array(
-                        'theme_location' => 'footer_legal',
-                        'container'      => false,
-                        'menu_class'     => 'footer__links',
-                        'fallback_cb'    => false,
-                    ) ); ?>
                     <ul class="footer__links">
+                        <li><a href="<?php echo esc_url( home_url('/mentions-legales/') ); ?>">Mentions légales</a></li>
+                        <li><a href="<?php echo esc_url( home_url('/conditions-generales-de-vente/') ); ?>">Conditions générales de vente</a></li>
+                        <li><a href="<?php echo esc_url( home_url('/conditions-generales-utilisation/') ); ?>">Conditions générales d'utilisation</a></li>
+                        <li><a href="<?php echo esc_url( home_url('/politique-de-confidentialite/') ); ?>">Politique de confidentialité</a></li>
+                        <li><a href="<?php echo esc_url( home_url('/politique-cookies/') ); ?>">Politique de cookies</a></li>
                         <li><button type="button" class="footer__cookie-btn js-cookie-settings">Gérer mes cookies</button></li>
                     </ul>
                 </div>
