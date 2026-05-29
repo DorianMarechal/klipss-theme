@@ -183,7 +183,7 @@
                 <div class="video-modal__content">
                     <div class="video-modal__video-wrapper">
                         <video id="videoPlayer" controls preload="none">
-                            <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/klipss-pub.mp4" type="video/mp4">
+                            <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/klipss.mp4" type="video/mp4">
                             Votre navigateur ne supporte pas la lecture de vidéos.
                         </video>
                     </div>
@@ -1289,7 +1289,7 @@
             </button>
             <div class="features-video-modal__video-wrapper">
                 <video id="featuresVideoPlayer" controls preload="none">
-                    <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/klipss-pub.mp4" type="video/mp4">
+                    <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/klipss.mp4" type="video/mp4">
                     Votre navigateur ne supporte pas la lecture de vidéos.
                 </video>
             </div>
