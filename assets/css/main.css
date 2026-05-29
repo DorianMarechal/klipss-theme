@@ -6682,3 +6682,354 @@ a.footer__contact-item:hover {
         flex: 1;
     }
 }
+/* ========================================
+    BANNIÈRE COOKIES (RGPD / CNIL)
+======================================== */
+.cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+    background: var(--color-primary-white);
+    box-shadow: 0 -4px 24px rgba(26, 5, 9, 0.18);
+    border-top: 3px solid var(--color-brand-safran);
+    transform: translateY(110%);
+    transition: transform var(--transition-base);
+    visibility: hidden;
+}
+.cookie-banner.is-visible {
+    transform: translateY(0);
+    visibility: visible;
+}
+.cookie-banner__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.cookie-banner__title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--color-primary-dark-alt);
+    margin-bottom: 6px;
+}
+.cookie-banner__text p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-primary-text-light);
+    margin: 0;
+}
+.cookie-banner__link,
+.cookie-modal__more {
+    color: var(--color-brand-burgundy);
+    text-decoration: underline;
+    font-weight: 600;
+}
+.cookie-banner__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.cookie-btn {
+    width: 100%;
+    padding: 13px 20px;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-brand-burgundy);
+    background: var(--color-primary-white);
+    color: var(--color-brand-burgundy);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.cookie-btn:hover {
+    background: var(--color-brand-burgundy);
+    color: var(--color-primary-white);
+}
+.cookie-btn:focus-visible {
+    outline: 3px solid rgba(253, 146, 13, 0.5);
+    outline-offset: 2px;
+}
+.cookie-btn--primary {
+    background: var(--gradient-cta);
+    border-color: transparent;
+    color: var(--color-primary-white);
+}
+.cookie-btn--primary:hover {
+    background: var(--gradient-cta-hover);
+    color: var(--color-primary-white);
+}
+
+/* Lien « Gérer mes cookies » dans le footer */
+.footer__cookie-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+}
+.footer__cookie-btn:hover {
+    text-decoration: underline;
+}
+
+/* Modale de personnalisation */
+.cookie-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+.cookie-modal.is-open {
+    display: flex;
+}
+.cookie-modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 5, 9, 0.55);
+}
+.cookie-modal__box {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--color-primary-white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 60px rgba(26, 5, 9, 0.3);
+}
+.cookie-modal__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid var(--color-neutral-7);
+}
+.cookie-modal__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-primary-dark-alt);
+}
+.cookie-modal__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-primary-text-light);
+    display: flex;
+}
+.cookie-modal__body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.cookie-cat__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 4px;
+}
+.cookie-cat__name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-primary-dark-alt);
+}
+.cookie-cat__always {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-brand-safran);
+}
+.cookie-cat__desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-primary-text-light);
+    margin: 0;
+}
+.cookie-modal__foot {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    border-top: 1px solid var(--color-neutral-7);
+}
+.cookie-modal__foot-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Interrupteur (switch) accessible */
+.cookie-switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 26px;
+    flex-shrink: 0;
+}
+.cookie-switch input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+.cookie-switch__slider {
+    position: absolute;
+    inset: 0;
+    background: var(--color-neutral-6);
+    border-radius: var(--radius-full);
+    transition: background var(--transition-fast);
+    pointer-events: none;
+}
+.cookie-switch__slider::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform var(--transition-fast);
+}
+.cookie-switch input:checked + .cookie-switch__slider {
+    background: var(--color-brand-safran);
+}
+.cookie-switch input:checked + .cookie-switch__slider::before {
+    transform: translateX(20px);
+}
+.cookie-switch input:focus-visible + .cookie-switch__slider {
+    outline: 3px solid rgba(253, 146, 13, 0.5);
+    outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+    .cookie-banner__inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        padding: 22px 28px;
+    }
+    .cookie-banner__actions {
+        flex-direction: row;
+        flex-shrink: 0;
+    }
+    .cookie-btn {
+        width: auto;
+        white-space: nowrap;
+    }
+    .cookie-modal__foot {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .cookie-modal__foot-actions {
+        flex-direction: row;
+    }
+}
+
+/* Case de consentement newsletter (footer sombre #1c1c1c) */
+.footer__newsletter-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+    max-width: 460px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+}
+.footer__newsletter-consent input {
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 1px 0 0;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+.footer__newsletter-consent input:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+.footer__newsletter-consent input:checked {
+    background: var(--color-brand-safran);
+    border-color: var(--color-brand-safran);
+}
+.footer__newsletter-consent input:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: solid #1c1c1c;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.footer__newsletter-consent input:focus-visible {
+    outline: 2px solid rgba(253, 146, 13, 0.6);
+    outline-offset: 2px;
+}
+.footer__newsletter-consent a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.footer__newsletter-consent a:hover {
+    color: var(--color-brand-safran);
+}
+
+/* Case d'acceptation CGV au checkout */
+.payment-modal__cgv-field {
+    margin: 14px 0 4px;
+}
+.payment-modal__cgv-field a {
+    color: var(--color-brand-burgundy);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Tableaux des pages légales (confidentialité / cookies) */
+.cgv__table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+    -webkit-overflow-scrolling: touch;
+}
+.cgv__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    min-width: 480px;
+}
+.cgv__table th,
+.cgv__table td {
+    text-align: left;
+    padding: 10px 12px;
+    border: 1px solid var(--color-neutral-6);
+    vertical-align: top;
+    line-height: 1.45;
+}
+.cgv__table thead th {
+    background: var(--color-background-secondary);
+    color: var(--color-primary-dark-alt);
+    font-weight: 700;
+}
+.cgv__table tbody tr:nth-child(even) td {
+    background: rgba(253, 246, 240, 0.5);
+}

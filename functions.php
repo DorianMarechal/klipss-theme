@@ -11,6 +11,8 @@ if (!defined('ABSPATH')) {
 // Comptes clients & gestion des commandes
 require_once get_template_directory() . '/inc/klipss-customer.php';
 require_once get_template_directory() . '/inc/klipss-admin-orders.php';
+// Conformité RGPD : bannière cookies, consentements, scripts tiers gated
+require_once get_template_directory() . '/inc/klipss-consent.php';
 
 // Masquer la barre d'administration WordPress sur le front-end
 add_filter('show_admin_bar', '__return_false', 9999);
@@ -358,6 +360,11 @@ function klipss_create_payment_intent() {
         wp_send_json_error(['message' => 'Erreur de sécurité.']);
     }
 
+    // Acceptation des CGV obligatoire avant toute création de paiement
+    if (($_POST['cgv_accepted'] ?? '') !== 'true') {
+        wp_send_json_error(['message' => 'Vous devez accepter les Conditions Générales de Vente.']);
+    }
+
     $option    = sanitize_text_field($_POST['option'] ?? '');
     $style     = sanitize_text_field($_POST['style']  ?? '');
     $email     = sanitize_email($_POST['email']        ?? '');
@@ -441,8 +448,18 @@ function klipss_newsletter_subscribe() {
         wp_send_json_error(['message' => 'Adresse email invalide.']);
     }
 
+    // Consentement explicite requis (case à cocher non pré-cochée)
+    if (empty($_POST['consent'])) {
+        wp_send_json_error(['message' => 'Vous devez accepter de recevoir nos communications.']);
+    }
+
     if (!class_exists(\MailPoet\API\API::class)) {
         wp_send_json_error(['message' => 'Service newsletter indisponible.']);
+    }
+
+    // Preuve de consentement (RGPD) — version du texte affiché dans le footer
+    if (function_exists('klipss_log_consent')) {
+        klipss_log_consent('newsletter', ['email' => true], KLIPSS_CONSENT_VERSION);
     }
 
     try {
@@ -460,7 +477,7 @@ function klipss_newsletter_subscribe() {
             ['send_confirmation_email' => true, 'schedule_welcome_email' => true]
         );
 
-        wp_send_json_success(['message' => 'Merci ! Vérifiez votre boîte mail pour confirmer votre inscription.']);
+        wp_send_json_success(['message' => 'Un email de confirmation a été envoyé. Cliquez sur le lien pour finaliser votre inscription.']);
     } catch (\Exception $e) {
         $msg = $e->getMessage();
         // L'abonné a été ajouté mais l'email de confirmation a échoué (normal en local)

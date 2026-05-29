@@ -49,6 +49,14 @@
                         'menu_class'     => 'footer__links',
                         'fallback_cb'    => false,
                     ) ); ?>
+                    <ul class="footer__links">
+                        <li><a href="<?php echo esc_url( home_url('/mentions-legales/') ); ?>">Mentions légales</a></li>
+                        <li><a href="<?php echo esc_url( home_url('/conditions-generales-de-vente/') ); ?>">CGV</a></li>
+                        <li><a href="<?php echo esc_url( home_url('/conditions-generales-utilisation/') ); ?>">CGU</a></li>
+                        <li><a href="<?php echo esc_url( home_url('/politique-de-confidentialite/') ); ?>">Politique de confidentialité</a></li>
+                        <li><a href="<?php echo esc_url( home_url('/politique-cookies/') ); ?>">Politique de cookies</a></li>
+                        <li><button type="button" class="footer__cookie-btn js-cookie-settings">Gérer mes cookies</button></li>
+                    </ul>
                 </div>
 
                 <!-- Colonne contact -->
@@ -86,6 +94,11 @@
                                required autocomplete="email">
                         <button type="submit" class="footer__newsletter-btn" id="newsletterBtn">S'inscrire</button>
                     </form>
+                    <label class="footer__newsletter-consent">
+                        <input type="checkbox" id="newsletterConsent" name="newsletter_consent" required>
+                        <span>J'accepte de recevoir la newsletter de KLIPSS. Désinscription possible à tout moment.
+                            <a href="<?php echo esc_url( home_url('/politique-de-confidentialite/') ); ?>">En savoir plus</a>.</span>
+                    </label>
                     <p class="footer__newsletter-error" id="newsletterError"></p>
                 </div>
 
@@ -129,8 +142,14 @@
 
                     form.addEventListener('submit', async function(e) {
                         e.preventDefault();
-                        const email = document.getElementById('newsletterEmail')?.value;
+                        const email   = document.getElementById('newsletterEmail')?.value;
+                        const consent = document.getElementById('newsletterConsent');
                         if (!email) return;
+                        if (consent && !consent.checked) {
+                            errorEl.textContent = 'Veuillez cocher la case pour accepter de recevoir nos communications.';
+                            errorEl.style.display = 'block';
+                            return;
+                        }
 
                         btn.disabled = true; btn.textContent = 'Envoi…';
                         errorEl.style.display = 'none';
@@ -139,7 +158,7 @@
                             const res = await fetch(klipss_stripe.ajax_url, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                                body: new URLSearchParams({ action: 'klipss_newsletter_subscribe', nonce: klipss_stripe.nonce_newsletter, email }),
+                                body: new URLSearchParams({ action: 'klipss_newsletter_subscribe', nonce: klipss_stripe.nonce_newsletter, email, consent: '1' }),
                             });
                             const data = await res.json();
 
@@ -167,6 +186,8 @@
 
         </div>
     </footer>
+
+    <?php if ( function_exists('klipss_render_cookie_banner') ) klipss_render_cookie_banner(); ?>
 
     <?php wp_footer(); ?>
 </body>

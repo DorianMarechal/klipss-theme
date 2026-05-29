@@ -16,6 +16,9 @@ let currentEcosystem = '';
 // Données de livraison collectées à l'étape 1
 let shippingData = {};
 
+// Le Payment Element est prêt (Stripe monté) — distinct de l'acceptation CGV
+let payReady = false;
+
 /* ─── Init ──────────────────────────────────────────────────── */
 
 export function init() {
@@ -48,6 +51,22 @@ export function init() {
     if (klipss_stripe.is_logged_in && klipss_stripe.customer) {
         prefillShippingFields(klipss_stripe.customer);
     }
+
+    // CGV : le bouton de paiement reste désactivé tant que la case n'est pas cochée
+    document.getElementById('cgvAccept')?.addEventListener('change', updatePayBtn);
+}
+
+/* ─── Gating du bouton de paiement (Stripe prêt + CGV acceptées) ────── */
+
+function cgvChecked() {
+    const c = document.getElementById('cgvAccept');
+    return !!(c && c.checked);
+}
+
+function updatePayBtn() {
+    const btn = document.getElementById('stripePayBtn');
+    if (!btn) return;
+    btn.disabled = !(payReady && cgvChecked());
 }
 
 /* ─── Nonce frais ───────────────────────────────────────────── */
@@ -155,6 +174,9 @@ async function onStep1Next() {
                 if (btn) { btn.disabled = false; btn.textContent = 'Continuer'; }
                 return;
             }
+            // Le compte vient d'être créé → l'utilisateur est désormais connecté.
+            // Les nonces liés à la session anonyme ne valident plus : on les rafraîchit.
+            await refreshNonces();
         } catch {
             showError('Erreur de connexion. Veuillez réessayer.', errorEl);
             if (btn) { btn.disabled = false; btn.textContent = 'Continuer'; }
@@ -191,12 +213,14 @@ async function goToStep2() {
     if (elementsInstance) {
         const amountEur = formatEur(currentAmount);
         payBtn.textContent = 'Payer ' + amountEur;
-        payBtn.disabled    = false;
         payBtn.onclick     = onPayClick;
+        payReady           = true;
+        updatePayBtn();
         return;
     }
 
     // Première ouverture : créer le PaymentIntent
+    payReady           = false;
     payBtn.textContent = 'Chargement…';
     payBtn.disabled    = true;
 
@@ -205,12 +229,13 @@ async function goToStep2() {
             method:  'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
-                action:    'klipss_create_payment_intent',
-                nonce:     klipss_stripe.nonce_payment,
-                option:    currentOption,
-                style:     currentStyle,
-                email:     shippingData.email,
-                ecosystem: currentEcosystem,
+                action:       'klipss_create_payment_intent',
+                nonce:        klipss_stripe.nonce_payment,
+                option:       currentOption,
+                style:        currentStyle,
+                email:        shippingData.email,
+                ecosystem:    currentEcosystem,
+                cgv_accepted: cgvChecked() ? 'true' : 'false',
             }),
         });
         const data = await res.json();
@@ -258,16 +283,18 @@ async function goToStep2() {
         const amountEur = formatEur(currentAmount);
         paymentEl.on('ready', () => {
             payBtn.textContent = 'Payer ' + amountEur;
-            payBtn.disabled    = false;
             payBtn.onclick     = onPayClick;
+            payReady           = true;
+            updatePayBtn();
         });
 
         // Fallback si ready ne se déclenche pas (ex: bloqueur pub)
         setTimeout(() => {
-            if (payBtn.disabled) {
+            if (!payReady) {
                 payBtn.textContent = 'Payer ' + amountEur;
-                payBtn.disabled    = false;
                 payBtn.onclick     = onPayClick;
+                payReady           = true;
+                updatePayBtn();
             }
         }, 4000);
 
@@ -290,6 +317,7 @@ function goToStep1(resetElements = true) {
     // pour qu'il puisse être recréé si l'email change
     if (resetElements) {
         elementsInstance = null;
+        payReady = false;
     }
 }
 
@@ -300,6 +328,13 @@ async function onPayClick() {
     const errorEl = document.getElementById('stripeError');
 
     clearError(errorEl);
+
+    // Garde-fou : impossible de payer sans accepter les CGV
+    if (!cgvChecked()) {
+        showError('Veuillez accepter les Conditions Générales de Vente pour continuer.', errorEl);
+        return;
+    }
+
     payBtn.disabled    = true;
     payBtn.textContent = 'Traitement en cours…';
 
@@ -359,6 +394,7 @@ async function processOrder() {
         option:            currentOption,
         ecosystem:         currentEcosystem,
         amount:            currentAmount,
+        cgv_accepted:      cgvChecked() ? 'true' : 'false',
     };
 
     await fetch(klipss_stripe.ajax_url, {

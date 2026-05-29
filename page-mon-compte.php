@@ -202,7 +202,7 @@ include get_template_directory() . '/inc/nav.php';
                     <div class="account-rgpd">
                         <section class="account-rgpd__section">
                             <h3>Préférences de contact</h3>
-                            <p>Choisissez comment nous pouvons vous contacter pour nos communications marketing.</p>
+                            <p>Choisissez comment nous pouvons vous contacter pour nos communications marketing. Vous pouvez vous opposer au traitement de vos données à des fins de prospection commerciale en décochant les cases ci-dessous.</p>
                             <div class="account-rgpd__prefs">
                                 <label class="account-rgpd__pref-label">
                                     <input type="checkbox" id="prefEmail"
@@ -217,6 +217,19 @@ include get_template_directory() . '/inc/nav.php';
                             </div>
                             <p id="prefsMsg" class="account-form__msg" style="display:none;"></p>
                             <button class="account-form__btn account-form__btn--secondary" id="savePrefsBtn" type="button">Enregistrer mes préférences</button>
+                        </section>
+
+                        <section class="account-rgpd__section">
+                            <h3>Accéder à mes données et les exporter</h3>
+                            <p>Conformément à vos droits d'accès (article 15 du RGPD) et à la portabilité (article 20), vous pouvez télécharger l'ensemble des données que nous détenons à votre sujet (profil, commandes, préférences, historique de consentement) dans un fichier structuré et lisible par machine.</p>
+                            <p id="exportMsg" class="account-form__msg" style="display:none;"></p>
+                            <button class="account-form__btn account-form__btn--secondary" id="exportDataBtn" type="button">Télécharger mes données (JSON)</button>
+                        </section>
+
+                        <section class="account-rgpd__section">
+                            <h3>Limitation du traitement</h3>
+                            <p>Conformément à l'article 18 du RGPD, vous pouvez demander la limitation du traitement de vos données dans certains cas. Pour exercer ce droit, contactez notre DPO par email à <a href="mailto:contact@klipss.fr?subject=Demande%20de%20limitation%20du%20traitement%20RGPD">contact@klipss.fr</a> (objet : « Demande de limitation du traitement RGPD »).</p>
+                            <p>Pour en savoir plus sur le traitement de vos données, consultez notre <a href="<?php echo esc_url(home_url('/politique-de-confidentialite/')); ?>">Politique de confidentialité</a>.</p>
                         </section>
 
                         <section class="account-rgpd__section account-rgpd__section--danger">

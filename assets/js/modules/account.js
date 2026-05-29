@@ -42,6 +42,7 @@ export function init() {
     initOrders();
     initProfile();
     initPreferences();
+    initExportData();
     initDeleteAccount();
 }
 
@@ -473,6 +474,38 @@ function initPreferences() {
             showMsg('Erreur.', msgEl, 'error');
         }
         btn.disabled = false; btn.textContent = 'Enregistrer mes préférences';
+    });
+}
+
+/* ─── Export des données (RGPD Art. 15 & 20) ────────────────── */
+
+function initExportData() {
+    const btn = document.getElementById('exportDataBtn');
+    if (!btn) return;
+
+    btn.addEventListener('click', async () => {
+        const msgEl = document.getElementById('exportMsg');
+        clearMsg(msgEl);
+        btn.disabled = true; btn.textContent = 'Génération…';
+
+        const data = await post({ action: 'klipss_export_data' });
+
+        if (data.success && data.data?.export) {
+            const json = JSON.stringify(data.data.export, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url  = URL.createObjectURL(blob);
+            const a    = document.createElement('a');
+            a.href     = url;
+            a.download = data.data.filename || 'klipss-mes-donnees.json';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            showMsg('Vos données ont été téléchargées.', msgEl, 'success');
+        } else {
+            showMsg(data.data?.message || 'Erreur lors de la génération.', msgEl, 'error');
+        }
+        btn.disabled = false; btn.textContent = 'Télécharger mes données (JSON)';
     });
 }
 

@@ -18,6 +18,7 @@ import * as FAQ from './modules/faq.js';
 import * as Animations from './modules/animations.js';
 import * as StickyBar from './modules/sticky-bar.js';
 import * as Account from './modules/account.js';
+import * as CookieConsent from './modules/cookie-consent.js';
 
 /**
  * Initialize all modules when DOM is ready
@@ -45,6 +46,9 @@ function initApp() {
 
     // Account / Mon Compte
     Account.init();
+
+    // Bannière cookies / consentement RGPD
+    CookieConsent.init();
 }
 
 // Initialize when DOM is ready

@@ -6,11 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
+    <?php
+    // Pages légales/RGPD : title dédié + noindex (légal, non prioritaire SEO)
+    $klipss_legal_titles = array(
+        'politique-de-confidentialite' => 'Politique de confidentialité — KLIPSS',
+        'politique-cookies'            => 'Politique de cookies — KLIPSS',
+    );
+    $klipss_noindex_page = false;
+    foreach ($klipss_legal_titles as $klipss_slug => $klipss_title) {
+        if (is_page($klipss_slug)) {
+            $klipss_noindex_page = $klipss_title;
+            break;
+        }
+    }
+    if ($klipss_noindex_page) : ?>
+    <title><?php echo esc_html($klipss_noindex_page); ?></title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="<?php echo esc_url(get_permalink()); ?>">
+    <?php else : ?>
     <title>Klipss | Bijou de sac connecté 3-en-1 — Accroche, Batterie, Tracker | 45€</title>
     <meta name="description" content="Klipss : le bijou de sac connecté 3-en-1. Batterie 3000mAh, charge Qi 7.5W, tracker Bluetooth. Design joaillier, 4 coloris. 45€, livraison gratuite.">
     <meta name="author" content="Klipss">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="<?php echo esc_url(home_url('/')); ?>">
+    <?php endif; ?>
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#5784BA">

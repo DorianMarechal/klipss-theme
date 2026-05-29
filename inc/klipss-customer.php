@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) exit;
 /* ─── Setup : rôle + table + page ──────────────────────────── */
 
 function klipss_setup() {
-    if (get_option('klipss_db_version') === '1.2') return;
+    if (get_option('klipss_db_version') === '1.3') return;
 
     // Rôle client (sans accès wp-admin)
     if (!get_role('klipss_customer')) {
@@ -44,22 +44,50 @@ function klipss_setup() {
         updated_at               DATETIME     NOT NULL
     ) $charset;");
 
-    // Auto-créer la page /mon-compte
-    if (!get_page_by_path('mon-compte')) {
-        wp_insert_post([
-            'post_title'     => 'Mon Compte',
-            'post_name'      => 'mon-compte',
-            'post_status'    => 'publish',
-            'post_type'      => 'page',
-            'post_content'   => '',
-            'page_template'  => 'page-mon-compte.php',
-        ]);
+    // Table de journalisation des consentements (RGPD)
+    $consent_table = $wpdb->prefix . 'klipss_consent_log';
+    dbDelta("CREATE TABLE IF NOT EXISTS $consent_table (
+        id                BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        user_id           BIGINT UNSIGNED NULL,
+        consent_type      VARCHAR(30)  NOT NULL DEFAULT 'cookies',
+        consent_hash      VARCHAR(64)  NOT NULL DEFAULT '',
+        consent_choices   TEXT,
+        consent_version   VARCHAR(20)  NOT NULL DEFAULT '',
+        consent_timestamp DATETIME     NOT NULL
+    ) $charset;");
+
+    // Colonnes preuve d'acceptation des CGV sur la commande
+    $cols = $wpdb->get_col("SHOW COLUMNS FROM {$wpdb->prefix}klipss_orders");
+    if (!in_array('cgv_accepted_version', $cols, true)) {
+        $wpdb->query("ALTER TABLE {$wpdb->prefix}klipss_orders ADD COLUMN cgv_accepted_version VARCHAR(20) NOT NULL DEFAULT ''");
+    }
+    if (!in_array('cgv_accepted_at', $cols, true)) {
+        $wpdb->query("ALTER TABLE {$wpdb->prefix}klipss_orders ADD COLUMN cgv_accepted_at DATETIME NULL");
+    }
+
+    // Auto-créer les pages du thème
+    $pages = [
+        'mon-compte'                  => ['Mon Compte',                 'page-mon-compte.php'],
+        'politique-de-confidentialite'=> ['Politique de confidentialité','page-politique-confidentialite.php'],
+        'politique-cookies'           => ['Politique de cookies',        'page-politique-cookies.php'],
+    ];
+    foreach ($pages as $slug => $info) {
+        if (!get_page_by_path($slug)) {
+            wp_insert_post([
+                'post_title'    => $info[0],
+                'post_name'     => $slug,
+                'post_status'   => 'publish',
+                'post_type'     => 'page',
+                'post_content'  => '',
+                'page_template' => $info[1],
+            ]);
+        }
     }
 
     // Migrer la colonne shipping_country si trop courte (VARCHAR 5 → 100)
     $wpdb->query("ALTER TABLE {$wpdb->prefix}klipss_orders MODIFY COLUMN shipping_country VARCHAR(100) NOT NULL DEFAULT ''");
 
-    update_option('klipss_db_version', '1.2');
+    update_option('klipss_db_version', '1.3');
 }
 add_action('after_switch_theme', 'klipss_setup');
 add_action('admin_init', 'klipss_setup');
@@ -301,6 +329,8 @@ function klipss_ajax_process_order() {
     $style       = sanitize_text_field($_POST['style']        ?? '');
     $ecosystem   = sanitize_text_field($_POST['ecosystem']    ?? '');
     $amount      = intval($_POST['amount']                    ?? 0);
+    $cgv_ok      = (($_POST['cgv_accepted'] ?? '') === 'true');
+    $cgv_version = $cgv_ok && defined('KLIPSS_CGV_VERSION') ? KLIPSS_CGV_VERSION : '';
 
     $name        = trim("$firstname $lastname");
     $order_ref   = 'KLP-' . date('Ymd') . '-' . strtoupper(wp_generate_password(5, false));
@@ -341,9 +371,16 @@ function klipss_ajax_process_order() {
         'option_name'              => $option_label,
         'amount'                   => $amount,
         'status'                   => 'pending',
+        'cgv_accepted_version'     => $cgv_version,
+        'cgv_accepted_at'          => $cgv_ok ? current_time('mysql') : null,
         'created_at'               => current_time('mysql'),
         'updated_at'               => current_time('mysql'),
     ]);
+
+    // Preuve d'acceptation des CGV (RGPD)
+    if ($cgv_ok && function_exists('klipss_log_consent')) {
+        klipss_log_consent('cgv', ['order_ref' => $order_ref], $cgv_version);
+    }
 
     $amount_eur = number_format($amount / 100, 2, ',', ' ') . ' €';
 
@@ -400,3 +437,67 @@ function klipss_ajax_get_my_orders() {
     wp_send_json_success(['orders' => $orders]);
 }
 add_action('wp_ajax_klipss_get_my_orders', 'klipss_ajax_get_my_orders');
+
+/* ─── AJAX : export des données (RGPD Art. 15 accès & Art. 20 portabilité) ─ */
+
+function klipss_ajax_export_data() {
+    check_ajax_referer('klipss_nonce_account', 'nonce');
+    if (!is_user_logged_in()) wp_send_json_error(['message' => 'Non connecté.']);
+
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $user    = wp_get_current_user();
+
+    // Profil
+    $profile = [
+        'first_name' => get_user_meta($user_id, 'klipss_firstname', true)   ?: $user->first_name,
+        'last_name'  => get_user_meta($user_id, 'klipss_lastname', true)    ?: $user->last_name,
+        'email'      => $user->user_email,
+        'phone'      => get_user_meta($user_id, 'klipss_phone', true)       ?: '',
+        'addresses'  => [[
+            'address'     => get_user_meta($user_id, 'klipss_address', true)     ?: '',
+            'city'        => get_user_meta($user_id, 'klipss_city', true)        ?: '',
+            'postal_code' => get_user_meta($user_id, 'klipss_postal_code', true) ?: '',
+            'country'     => get_user_meta($user_id, 'klipss_country', true)     ?: 'France',
+        ]],
+    ];
+
+    // Commandes
+    $orders = $wpdb->get_results($wpdb->prepare(
+        "SELECT order_ref, style, option_name, amount, status, tracking_number, carrier, created_at
+         FROM {$wpdb->prefix}klipss_orders WHERE user_id = %d ORDER BY created_at DESC",
+        $user_id
+    ), ARRAY_A);
+
+    // Préférences marketing
+    $marketing = [
+        'email' => get_user_meta($user_id, 'klipss_pref_email', true) === '1',
+        'sms'   => get_user_meta($user_id, 'klipss_pref_sms', true)   === '1',
+    ];
+
+    // Journal des consentements
+    $consents = [];
+    $consent_table = $wpdb->prefix . 'klipss_consent_log';
+    if ($wpdb->get_var("SHOW TABLES LIKE '$consent_table'") === $consent_table) {
+        $consents = $wpdb->get_results($wpdb->prepare(
+            "SELECT consent_type, consent_choices, consent_version, consent_timestamp
+             FROM $consent_table WHERE user_id = %d ORDER BY consent_timestamp DESC",
+            $user_id
+        ), ARRAY_A);
+    }
+
+    $export = [
+        'profile'               => $profile,
+        'orders'                => $orders,
+        'marketing_preferences' => $marketing,
+        'consents'              => $consents,
+        'export_date'           => current_time('c'),
+        'export_version'        => '1.0',
+    ];
+
+    wp_send_json_success([
+        'export'   => $export,
+        'filename' => 'klipss-mes-donnees-' . date('Ymd') . '.json',
+    ]);
+}
+add_action('wp_ajax_klipss_export_data', 'klipss_ajax_export_data');

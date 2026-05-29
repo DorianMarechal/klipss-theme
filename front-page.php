@@ -1429,6 +1429,17 @@
                 <!-- Erreur -->
                 <p id="stripeError" class="stripe-error" style="display:none;"></p>
 
+                <!-- Acceptation CGV (obligatoire avant paiement) -->
+                <div class="payment-modal__field payment-modal__cgv-field">
+                    <label class="payment-modal__checkbox-label">
+                        <input type="checkbox" id="cgvAccept" name="cgv_accepted" required>
+                        <span>J'ai lu et j'accepte les
+                            <a href="<?php echo esc_url( home_url('/conditions-generales-de-vente/') ); ?>" target="_blank" rel="noopener">Conditions Générales de Vente</a>
+                            et j'ai pris connaissance de la
+                            <a href="<?php echo esc_url( home_url('/politique-de-confidentialite/') ); ?>" target="_blank" rel="noopener">Politique de confidentialité</a>.</span>
+                    </label>
+                </div>
+
                 <!-- Bouton payer -->
                 <button class="payment-modal__pay-btn" id="stripePayBtn" type="button" disabled>
                     Chargement…

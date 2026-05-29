@@ -92,8 +92,15 @@
                         <li class="cgv__article-list-item">Par courrier : Klipss SAS - DPO, 123 Rue de l'Audio, 75001 Paris, France</li>
                     </ul>
                     <p class="cgv__article-text">
-                        Pour plus d'informations sur la protection de vos données personnelles, consultez notre <a href="<?php echo home_url('/conditions-generales-utilisation/'); ?>" class="cgv__link">Politique de Confidentialité</a>.
+                        Pour plus d'informations sur la protection de vos données personnelles, consultez notre <a href="<?php echo home_url('/politique-de-confidentialite/'); ?>" class="cgv__link">Politique de Confidentialité</a>.
                     </p>
+                    <p class="cgv__article-text">
+                        Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la Commission Nationale de l'Informatique et des Libertés (CNIL) :
+                    </p>
+                    <ul class="cgv__article-list">
+                        <li class="cgv__article-list-item">Site : <a href="https://www.cnil.fr" class="cgv__link" target="_blank" rel="noopener noreferrer">www.cnil.fr</a></li>
+                        <li class="cgv__article-list-item">Adresse : 3 Place de Fontenoy, TSA 80715, 75334 Paris Cedex 07</li>
+                    </ul>
                 </article>
 
                 <article class="cgv__article">
